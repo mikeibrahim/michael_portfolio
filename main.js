@@ -1,3 +1,11 @@
+// create a json-like object from the above context
+let tools = [
+		{name: 'Unity', link: 'https://unity.com/', description: 'Unity is a cross-platform game engine developed by Unity Technologies. It was originally released in 2005 for the Xbox, and has since been developed by many companies to power their games.'},
+		{name: 'Blender', link: 'https://www.blender.org/', description: 'Blender is a free and open-source 3D computer graphics software product created by the Blender Foundation, a non-profit organization based in Amsterdam, Netherlands.'},
+		{name: 'Gravity Sketch', link: 'https://gravitysketch.com/', description: 'Gravity Sketch is a free 3D virtual reality software product created by the Gravity Sketch Foundation, an organization based in London, UK.'},
+		{name: 'Roblox', link: 'https://www.roblox.com/', description: 'Roblox is a free 3D game engine created by the Roblox Corporation, a company based in San Mateo, California.'}
+];
+
 let games = [
 		{name: "Well Chess But Actually No", 
 		 link: "https://mikeibrahim.itch.io/chess-3", 
@@ -41,7 +49,21 @@ let art = [
 		 description: "Made in Adobe Fresco"}
 ]
 
-function makeCell(parent, name, link, image, description) {
+// make the above comment into javascript so it can be dynamically added to the page
+function makeheader(parent, name) {
+	let header = document.createElement("div");
+	header.className = "col-lg-12 text-center";
+	let title = document.createElement("h2");
+	title.className = "section-heading";
+	title.innerHTML = name;
+	header.appendChild(title);
+	let lineBreak = document.createElement("hr");
+	lineBreak.className = "my-4";
+	header.appendChild(lineBreak);
+	parent.appendChild(header);
+}
+
+function makeCell(parent, name, link, image, description, minimal=false) {
 	// Create the cell
 	let cell = document.createElement("div");
 	cell.className = "cell col-lg-4 col-md-6 text-center";
@@ -53,11 +75,13 @@ function makeCell(parent, name, link, image, description) {
 	cell.appendChild(cellLink);
 	
 	// Create the image
-	let cellImage = document.createElement("img");
-	cellImage.src = image;
-	cellImage.alt = name;
-	cellImage.className = "img-fluid cellImage";
-	cellLink.appendChild(cellImage);
+	if (image) {
+		let cellImage = document.createElement("img");
+		cellImage.src = image;
+		cellImage.alt = name;
+		cellImage.className = "img-fluid cellImage";
+		cellLink.appendChild(cellImage);
+	}
 
 	// Create the name
 	let cellName = document.createElement("h3");
@@ -74,23 +98,31 @@ function makeCell(parent, name, link, image, description) {
 	parent.appendChild(cell);
 }
 
-// Create the games in the gameHolder using the games array
+// TOOLS
+let toolHeader = document.getElementById("toolHeader");
+makeheader(toolHeader, "Tools I Use");
+for (let i = 0; i < tools .length;i++) {
+	let toolHolder = document.getElementById("toolHolder");
+	makeCell(toolHolder, tools[i].name, tools[i].link, null, tools[i].description);
+}
+
+// GAMES
+let gameHeader = document.getElementById("gameHeader");
+makeheader(gameHeader, "Games I've Made");
 for (let i = 0; i < games.length; i++) {
 	let gameHolder = document.getElementById("gameHolder");
 	makeCell(gameHolder, games[i].name, games[i].link, games[i].image, games[i].description);
 }
 
-// Create the art in the artHolder using the art array
+// ART
+let artHeader = document.getElementById("artHeader");
+makeheader(artHeader, "My Artwork");
 for (let i = 0; i < art.length; i++) {
 	let artHolder = document.getElementById("artHolder");
 	makeCell(artHolder, art[i].name, art[i].image, art[i].image, art[i].description);
 }
 
 // if a cell is in the viewport, add the cell_animation class to it, otherwise, remove it
-// Remove the_animation class
-const cell = document.querySelector('.cell');
-cell.classList.remove('cell_animation');
-
 const cellHolders = document.querySelectorAll('.cellHolder');
 cellHolders.forEach(cellHolder => {
 	// for each cell in the cellHolder, add the observer
