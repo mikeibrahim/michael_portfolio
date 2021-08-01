@@ -1,4 +1,9 @@
-// create a json-like object from the above context
+let headers = [
+	{id: "gameHeader", name: "Games I've Made", image: "https://lh3.googleusercontent.com/proxy/rxiF0UO7bUKL44G2peDaZtWmr977ZLx_54Wgs-Y0dkgGyi1xma46HfmipqbyQOT-Scyv63sAE2nsIIruK7kzQNBlPgJwLbsJpcV7NABIYtQ-dXDluOkPAA"},
+	{id: "artHeader", name: "My Artwork", image: "https://lh3.googleusercontent.com/l_dk5jlgtK6B8_qrsMMR-DkCQE0w-PQBWrVyLhRBOQD3LBIe2NNoPp8EWdss7hgETIWBzNo8OnHxrP7Xt8v-xEobAwwj1_ogOV6qzu8maT-nlAyLC0rNpTjNQaDQAXgA6hQNS2iYGiXUiZhNjlp0j6FZGQVRm7c3hv8tW00g7hYA9ahRKUCqDjSzBKZ_H6suurF7mQcSo8CmCSSHj4LembYuQmf8ksdAM3Ij6n4-jrdJ-Hgc0sMLa3Fk9FidTSsVZd6R6RaDrPwah7PdfCTiZOYvA_hs4I9N_vkgIScz5C-bb1cKCeCeEzCll_-lNDghHIHNoSUGUsK2ddK3UkjgTMbNcuWXHUSu3i6nzXSl6jUNSJ6SFB88ZXmrfpqK_d1tieIbAjYAwabqecDfadlUBtKTlMfdkNwqCiZhrYIg_ViVyjaG18IaKFycKqYXyYKhZpVxmnBq1C5ZLFKFbwwfKLLH8Js8VtW5SzZyfBIbbeEp8fCPG9GSFsin8PBijpYRBu3_VPnaID6B78kg6xtWCAcn6TbAcX1fl_0S3EsrfTwLjBT6Y3-iBC8wj43O6tawLIVFETrTjhJUY56HqzdVM3lqh0ZRFUudpbTEultzUzHHVPLvqI9PeRksuqGPU7122sHVvQO1_m8hLM_a5g_sM_8i01K9MvkKdmQITNJVIMuTLbajmchmAX9HQHwgqvAiMH9mXiZDhg-X7OpJfZc=w1915-h1078-no?authuser=0"},
+	{id: "toolHeader", name: "Tools I Use", image: "https://lh3.googleusercontent.com/proxy/TkEmg9k5MSq_Ie5JnYc0MB9S6HD_RxcSbLPvB-bmZo0tg1w5b6iEBE0-4oShLtu65x6suNXdSRX7jmWkvCjpvHLWGKaOOKOtPGVYLAZrqoYvCuhwjhscig"}
+]
+
 let tools = [
 		{name: 'Unity', link: 'https://unity.com/', description: 'Unity is a cross-platform game engine developed by Unity Technologies. It was originally released in 2005 for the Xbox, and has since been developed by many companies to power their games.'},
 		{name: 'Blender', link: 'https://www.blender.org/', description: 'Blender is a free and open-source 3D computer graphics software product created by the Blender Foundation, a non-profit organization based in Amsterdam, Netherlands.'},
@@ -50,16 +55,25 @@ let art = [
 ]
 
 // make the above comment into javascript so it can be dynamically added to the page
-function makeheader(parent, name) {
+function makeheader(parent, name, image) {
 	let header = document.createElement("div");
 	header.className = "col-lg-12 text-center";
+	
+	// // make the background of the header an image
+	// let background = document.createElement("img");
+	// background.src = image;
+	// background.className = "headerImage img-responsive";
+	// header.appendChild(background);
+	
 	let title = document.createElement("h2");
-	title.className = "section-heading";
+	title.className = "headerText section-heading";
 	title.innerHTML = name;
 	header.appendChild(title);
-	let lineBreak = document.createElement("hr");
-	lineBreak.className = "my-4";
-	header.appendChild(lineBreak);
+	
+	// let lineBreak = document.createElement("hr");
+	// lineBreak.className = "my-4";
+	// header.appendChild(lineBreak);
+	parent.style.backgroundImage = "url(" + image + ")";
 	parent.appendChild(header);
 }
 
@@ -98,28 +112,35 @@ function makeCell(parent, name, link, image, description, minimal=false) {
 	parent.appendChild(cell);
 }
 
-// TOOLS
-let toolHeader = document.getElementById("toolHeader");
-makeheader(toolHeader, "Tools I Use");
-for (let i = 0; i < tools .length;i++) {
-	let toolHolder = document.getElementById("toolHolder");
-	makeCell(toolHolder, tools[i].name, tools[i].link, null, tools[i].description);
+// HEADERS
+for (let i = 0; i < headers.length; i++) {
+	let id = headers[i].id;
+	let parent = document.getElementById(id);
+	makeheader(parent, headers[i].name, headers[i].image);
 }
 
 // GAMES
-let gameHeader = document.getElementById("gameHeader");
-makeheader(gameHeader, "Games I've Made");
+// let gameHeader = document.getElementById("gameHeader");
+// makeheader(gameHeader, "Games I've Made");
 for (let i = 0; i < games.length; i++) {
 	let gameHolder = document.getElementById("gameHolder");
 	makeCell(gameHolder, games[i].name, games[i].link, games[i].image, games[i].description);
 }
 
 // ART
-let artHeader = document.getElementById("artHeader");
-makeheader(artHeader, "My Artwork");
+// let artHeader = document.getElementById("artHeader");
+// makeheader(artHeader, "My Artwork");
 for (let i = 0; i < art.length; i++) {
 	let artHolder = document.getElementById("artHolder");
 	makeCell(artHolder, art[i].name, art[i].image, art[i].image, art[i].description);
+}
+
+// TOOLS
+// let toolHeader = document.getElementById("toolHeader");
+// makeheader(toolHeader, "Tools I Use");
+for (let i = 0; i < tools .length;i++) {
+	let toolHolder = document.getElementById("toolHolder");
+	makeCell(toolHolder, tools[i].name, tools[i].link, null, tools[i].description);
 }
 
 // if a cell is in the viewport, add the cell_animation class to it, otherwise, remove it
