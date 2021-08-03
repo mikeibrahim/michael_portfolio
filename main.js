@@ -1,4 +1,4 @@
-//// EXAMPLE JSON FROM GOOGLE FIREBASE ////
+//// MOCK JSON FROM GOOGLE FIREBASE ////
 let data = 
 {
 	// Personal Info
@@ -264,7 +264,6 @@ let title = document.getElementById("title");
 title.innerHTML = personalInfo.title;
 
 let usernames = document.querySelectorAll(".username");
-console.log(usernames);
 usernames.forEach(username => {
 	username.innerHTML = personalInfo.username;
 });
@@ -283,6 +282,7 @@ projects.forEach(project => {
 	// Headers for each project
 	let divHeader = document.createElement("div");
 	divHeader.className = "row cellHeader";
+	divHeader.id = `${project.id}Header`
 	makeheader(divHeader, project.name, project.image);
 
 	// Cell for each project in that cetegory
