@@ -13,35 +13,37 @@
         <!-- Navigation Bar -->
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 			<div class="container">
-				<a class="navbar-brand" href="#">Michael Ibrahim</a>
+				<a id="navName" class="navbar-brand" href="#">Michael Ibrahim</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
+					<ul id='navItemHolder' class="navbar-nav ml-auto">
 						<li class="nav-item active">
 							<a class="nav-link" href="#">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
-						<li class="nav-item">
+						<!-- <li class="nav-item">
 							<a class="nav-link" href="#gameHeader">Games</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#artHeader">Artwork</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#toolHeader">About</a>
+							<a class="nav-link" href="#projectHeader">Projects</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#toolHeader">About</a>
+						</li> -->
 					</ul>
 				</div>
 			</div>
 		</nav>
-		<!-- [End] Navigation Bar -->
 
 		<!-- Page Content -->
 		<br> <br> <br> <br>
-		<div class="container">
+		<div id="container" class="container">
 			<!-- Info About Me -->
 			<div class="row">
 				<div class="col-lg-12 text-center">
@@ -54,20 +56,9 @@
 					<a class="btn btn-primary btn-lg" href="#" role="button">Download Resume</a>
 				</div>
 			</div>
-			<!-- Games I've Made -->
-			<!-- <br> <br> <br> <br> -->
-			<div id="gameHeader"class="row cellHeader"></div>
-			<div id ="gameHolder" class="row cellHolder"></div>
-			<!-- Artwork Page -->
-			<!-- <br> <br> <br> <br> -->
-			<div id="artHeader"class="row cellHeader"></div>
-			<div id="artHolder" class="row cellHolder"></div>
-			<!-- Tools I Use -->
-			<!-- <br> <br> <br> <br> -->
-			<div id="toolHeader" class="row cellHeader"></div>
-			<div id ="toolHolder" class="row cellHolder"></div>
+
+			<!-- This is where the content gets created -->
 		</div>
-		<!-- [End] Page Content -->
 
 		<!-- JS Files -->
 		<script src="main.js"></script>
