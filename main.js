@@ -4,6 +4,7 @@ let data =
 	// Personal Info
 	personalInfo:
 	{
+		title: "Ibrahim Portfolios",
 		username: "Michael Ibrahim",
 		bio: "I am currently developing a number of games and creative works using amazing (and free!) online tools such as Unity, Blender, Gravity Sketch, and Roblox. I'm fairly new in the computer science and game development industry, though I always love finding a new challenge to embark on.",
 	},
@@ -259,10 +260,8 @@ function makeCell(parent, name, description, status, link, image) {
 let personalInfo = data.personalInfo;
 let projects = data.projects;
 
-// Making the navbar
-let projectList = []; // a list of projects
-projects.forEach(project => {projectList.push(project.id);});
-makeNavbar(projectList);
+let title = document.getElementById("title");
+title.innerHTML = personalInfo.title;
 
 let usernames = document.querySelectorAll(".username");
 console.log(usernames);
@@ -272,6 +271,11 @@ usernames.forEach(username => {
 
 let bio = document.getElementById("bio");
 bio.innerHTML = personalInfo.bio;
+
+// Making the navbar
+let projectList = []; // a list of projects
+projects.forEach(project => {projectList.push(project.id);});
+makeNavbar(projectList);
 
 // Making the projects
 let container = document.getElementById("container");
