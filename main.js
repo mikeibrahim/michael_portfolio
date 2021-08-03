@@ -264,7 +264,8 @@ let projectList = []; // a list of projects
 projects.forEach(project => {projectList.push(project.id);});
 makeNavbar(projectList);
 
-let usernames = document.querySelectorAll("username");
+let usernames = document.querySelectorAll(".username");
+console.log(usernames);
 usernames.forEach(username => {
 	username.innerHTML = personalInfo.username;
 });
